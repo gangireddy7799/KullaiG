@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Text</title>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            text-transform: capitalize;
+            overflow: hidden;
+        }
+
+        .animated-text span {
+            display: inline-block;
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: calc(0.5s * var(--index));
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-text">
+        <!-- JavaScript will insert words here -->
+    </div>
+
+    <script>
+        // The text to animate
+        const text = "This is animated text with each word appearing one by one";
+
+        // Split the text into words and create span elements for each word
+        const container = document.querySelector('.animated-text');
+        text.split(' ').forEach((word, index) => {
+            const span = document.createElement('span');
+            span.textContent = word + ' ';
+            span.style.setProperty('--index', index);
+            container.appendChild(span);
+        });
+    </script>
+</body>
+</html>
